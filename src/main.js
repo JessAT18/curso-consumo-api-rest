@@ -1,8 +1,9 @@
 
 const API_KEY = 'b4da4f38-1d3b-497c-b1d0-e7905889d5fa';
 const API_BASE_URL = 'https://api.thecatapi.com/v1'
+
 const API_RANDOM = `${API_BASE_URL}/images/search?limit=3&api_key=${API_KEY}`;
-const API_FAV = `${API_BASE_URL}/favourites/search?limit=3&api_key=${API_KEY}`;
+const API_FAV = `${API_BASE_URL}/favourites/?api_key=${API_KEY}`;
 
 const spanError = document.getElementById('error');
 
@@ -30,6 +31,28 @@ async function loadFavoriteMichis() {
 
     if (response.status !== 200){
         spanError.innerHTML = `Hubo un error en fav: ${response.status}`;
+    }
+}
+
+async function saveFavoriteMichi() {
+    const response = await fetch(API_FAV, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify ({
+            image_id: 'yHZ1Cr6fd'
+        }),
+    });
+
+    
+    const data = await response.json();
+
+    console.log('Save');
+    console.log(response);
+
+    if (response.status !== 200){
+        spanError.innerHTML = `Hubo un error en dar fav: ${response.status} ${data.message}`;
     }
 }
 
