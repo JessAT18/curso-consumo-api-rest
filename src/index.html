@@ -36,10 +36,10 @@
         @tailwind components;
         @tailwind utilities;
     </style>
-    <title>Kittens app</title>
+    <title>Michis app</title>
 </head>
 <body>
-    <h1>Kittens app</h1>
+    <h1>Michis app</h1>
 
     <h2>Discover new michis</h2>
     <section id="randomKittens">
@@ -63,6 +63,14 @@
         </div>
 
         <button onclick="loadRandomMichis()">Show me more michis</button>
+    </section>
+
+    <section id="uploadingMichi">
+        <h2>Upload your michi photo</h2>
+        <form id="uploadingForm">
+            <input type="file" id="file" name="file">
+            <button type="button" onclick="uploadMichiPhoto()">Upload photo</button>
+        </form>
     </section>
 
     <section id="favoriteKittens">

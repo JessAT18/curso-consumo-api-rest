@@ -16,7 +16,7 @@ async function loadRandomMichis() {
     const response = await fetch(API_RANDOM);
     const data = await response.json();
 
-    if (response.status !== 200){
+    if (response.status !== 200) {
         showError('random', response.status, data.message);
     } else {
         const img1 = document.getElementById('imgKitten1');
@@ -26,7 +26,7 @@ async function loadRandomMichis() {
         const btnFav1 = document.getElementById('btnFav1');
         const btnFav2 = document.getElementById('btnFav2');
         const btnFav3 = document.getElementById('btnFav3');
-        
+
         img1.src = data[0].url;
         img2.src = data[1].url;
         img3.src = data[2].url;
@@ -47,7 +47,7 @@ async function loadFavoriteMichis() {
     const data = await response.json();
     console.log(data);
 
-    if (response.status !== 200){
+    if (response.status !== 200) {
         showError('fav', response.status, data.message);
     } else {
         const section = document.getElementById('favoriteKittensContainer');
@@ -57,7 +57,7 @@ async function loadFavoriteMichis() {
             const img = document.createElement('img');
             const btn = document.createElement('button');
             const btnText = document.createTextNode('Not ❤️');
-            
+
             btn.appendChild(btnText);
             btn.onclick = () => deleteFavoriteMichi(michi.id);
             img.src = michi.image.url;
@@ -77,14 +77,14 @@ async function saveFavoriteMichi(id) {
             'Content-Type': 'application/json',
             'x-api-key': API_KEY
         },
-        body: JSON.stringify ({
+        body: JSON.stringify({
             image_id: id
         }),
     });
 
     const data = await response.json();
 
-    if (response.status !== 200){
+    if (response.status !== 200) {
         showError('dar fav', response.status, data.message);
     } else {
         console.log('Michi guardado');
@@ -101,12 +101,18 @@ async function deleteFavoriteMichi(id) {
     });
 
     const data = await response.json();
-    if (response.status !== 200){
+    if (response.status !== 200) {
         showError('dar fav', response.status, data.message);
     } else {
         console.log('Michi eliminado');
         loadFavoriteMichis();
     }
+}
+
+async function uploadMichiPhoto() {
+    const form = document.getElementById('uploadingForm');
+    const formData = new FormData(form);
+    console.log(formData.get('file'));
 }
 
 loadRandomMichis();
