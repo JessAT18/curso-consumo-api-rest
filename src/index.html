@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" src="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-gray-800 ;
+            }
+            h1 {
+                @apply text-2xl text-slate-100 font-semibold;
+            }
+            h2 {
+                @apply text-xl text-slate-100 font-semibold;
+            }
+            h3 {
+                @apply text-lg text-slate-100 font-semibold;
+            }
+            a {
+                @apply text-blue-600 underline text-slate-100 font-semibold;
+            }
+            button {
+                @apply bg-purple-800 rounded-full p-2 text-xl text-black font-medium text-indigo-50
+            }
+            .favButton{
+                @apply text-white bg-red-500
+            }
+            .michiBox{
+                @apply p-1 m-2
+            }
+        }
+        @tailwind components;
+        @tailwind utilities;
+    </style>
+    <title>Kittens app</title>
+</head>
+<body>
+    <h1>Kittens app</h1>
+
+    <h2>Discover new michis</h2>
+    <section id="randomKittens">
+        <div class="flex items-center">
+            <article class="michiBox">
+                <img id="imgKitten1" width="300" height="400" alt="Random kitten picture">
+                <button class="favButton">❤️</button>
+            </article>
+            <article class="michiBox">
+                <img id="imgKitten2" width="300" height="400" alt="Random kitten picture">
+                <button class="favButton">❤️</button>
+            </article>
+    
+            <article class="michiBox">
+                <img id="imgKitten3" width="300" height="400" alt="Random kitten picture">
+                <button class="favButton">❤️</button>
+            </article>
+        </div>
+
+        <button onclick="reload()">Show me more michis</button>
+    </section>
+
+    <section id="favoritesKittens">
+        <h2>My favorite michis</h2>
+        <article>
+            <img id="imgKitten4" class="michiBox" width="300" height="400" alt="Random kitten picture">
+            <button>This michi is not my ❤️ anymore</button>
+        </article>
+    </section>
+
+    <script src="./main.js"></script>
+</body>
+</html>
