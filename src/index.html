@@ -9,7 +9,7 @@
     <style type="text/tailwindcss">
         @layer base {
             body {
-                @apply bg-gray-800 ;
+                @apply bg-gray-800 p-3 text-white;
             }
             h1 {
                 @apply text-2xl text-slate-100 font-semibold;
@@ -43,6 +43,9 @@
 
     <h2>Discover new michis</h2>
     <section id="randomKittens">
+        
+        <span id="error"></span>
+
         <div class="flex items-center">
             <article class="michiBox">
                 <img id="imgKitten1" width="300" height="400" alt="Random kitten picture">
@@ -59,15 +62,17 @@
             </article>
         </div>
 
-        <button onclick="reload()">Show me more michis</button>
+        <button onclick="loadRandomMichis()">Show me more michis</button>
     </section>
 
     <section id="favoritesKittens">
         <h2>My favorite michis</h2>
-        <article>
-            <img id="imgKitten4" class="michiBox" width="300" height="400" alt="Random kitten picture">
-            <button>This michi is not my ❤️ anymore</button>
-        </article>
+        <div class="flex items-center">
+            <article>
+                <img id="imgKitten4" class="michiBox" width="300" height="400" alt="Random kitten picture">
+                <button>This michi is not my ❤️ anymore</button>
+            </article>
+        </div>
     </section>
 
     <script src="./main.js"></script>
