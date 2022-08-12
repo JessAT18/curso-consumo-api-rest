@@ -4,6 +4,7 @@ const API_BASE_URL = 'https://api.thecatapi.com/v1'
 
 const API_RANDOM = `${API_BASE_URL}/images/search?limit=3&api_key=${API_KEY}`;
 const API_FAV = `${API_BASE_URL}/favourites/?api_key=${API_KEY}`;
+const API_NO_FAV = (id) => `${API_BASE_URL}/favourites/${id}?api_key=${API_KEY}`;
 
 const spanError = document.getElementById('error');
 
@@ -44,14 +45,16 @@ async function loadFavoriteMichis() {
     if (response.status !== 200){
         showError('fav', response.status, data.message);
     } else {
+        const section = document.getElementById('favoriteKittensContainer');
+        section.innerHTML = '';
         data.forEach(michi => {
-            const section = document.getElementById('favoriteKittensContainer');
             const article = document.createElement('article');
             const img = document.createElement('img');
             const btn = document.createElement('button');
             const btnText = document.createTextNode('Not ❤️');
             
             btn.appendChild(btnText);
+            btn.onclick = () => deleteFavoriteMichi(michi.id);
             img.src = michi.image.url;
             img.width = 300;
             img.height = 400;
@@ -78,7 +81,22 @@ async function saveFavoriteMichi(id) {
     if (response.status !== 200){
         showError('dar fav', response.status, data.message);
     } else {
-    
+        console.log('Michi guardado');
+        loadFavoriteMichis();
+    }
+}
+
+async function deleteFavoriteMichi(id) {
+    const response = await fetch(API_NO_FAV(id), {
+        method: 'DELETE',
+    });
+
+    const data = await response.json();
+    if (response.status !== 200){
+        showError('dar fav', response.status, data.message);
+    } else {
+        console.log('Michi eliminado');
+        loadFavoriteMichis();
     }
 }
 
