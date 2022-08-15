@@ -1,6 +1,11 @@
-
 const API_KEY = 'b4da4f38-1d3b-497c-b1d0-e7905889d5fa';
 const API_BASE_URL = 'https://api.thecatapi.com/v1'
+
+const api = axios.create({
+    baseURL: API_BASE_URL
+});
+
+api.defaults.headers.common['x-api-key'] = API_KEY;
 
 const API_RANDOM = `${API_BASE_URL}/images/search?limit=3`;
 const API_FAV = `${API_BASE_URL}/favourites`;
@@ -73,21 +78,25 @@ async function loadFavoriteMichis() {
 }
 
 async function saveFavoriteMichi(id) {
-    const response = await fetch(API_FAV, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': API_KEY
-        },
-        body: JSON.stringify({
-            image_id: id
-        }),
+    // const response = await fetch(API_FAV, {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'x-api-key': API_KEY
+    //     },
+    //     body: JSON.stringify({
+    //         image_id: id
+    //     }),
+    // });
+
+    // const data = await response.json();
+
+    const {data, status} = await api.post( '/favourites', {
+        image_id: id
     });
 
-    const data = await response.json();
-
-    if (response.status !== 200) {
-        showError('dar fav', response.status, data.message);
+    if (status !== 200) {
+        showError('dar fav', status, data);
     } else {
         console.log('Michi guardado');
         loadFavoriteMichis();
