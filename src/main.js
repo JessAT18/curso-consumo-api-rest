@@ -2,10 +2,11 @@ const API_KEY = 'b4da4f38-1d3b-497c-b1d0-e7905889d5fa';
 const API_BASE_URL = 'https://api.thecatapi.com/v1'
 
 const api = axios.create({
-    baseURL: API_BASE_URL
+    baseURL: API_BASE_URL,
+    headers: {
+        'x-api-key': API_KEY
+    }
 });
-
-api.defaults.headers.common['x-api-key'] = API_KEY;
 
 const API_RANDOM = `${API_BASE_URL}/images/search?limit=3`;
 const API_FAV = `${API_BASE_URL}/favourites`;
