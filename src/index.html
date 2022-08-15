@@ -1,88 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" src="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" src="./style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
-        @layer base {
-            body {
-                @apply bg-gray-800 p-3 text-white;
-            }
-            h1 {
-                @apply text-2xl text-slate-100 font-semibold;
-            }
-            h2 {
-                @apply text-xl text-slate-100 font-semibold;
-            }
-            h3 {
-                @apply text-lg text-slate-100 font-semibold;
-            }
-            a {
-                @apply text-blue-600 underline text-slate-100 font-semibold;
-            }
-            button {
-                @apply bg-purple-800 rounded-full p-2 text-xl text-black font-medium text-indigo-50
-            }
-            .favButton{
-                @apply text-white bg-red-500
-            }
-            .michiBox{
-                @apply p-1 m-2
-            }
+      @layer base {
+        body {
+          @apply bg-gray-800 text-white;
         }
-        @tailwind components;
-        @tailwind utilities;
+        h1 {
+          @apply text-2xl text-slate-100 font-semibold;
+        }
+        h2 {
+          @apply text-xl text-slate-100 font-semibold;
+        }
+        h3 {
+          @apply text-lg text-slate-100 font-semibold;
+        }
+        a {
+          @apply text-blue-600 text-slate-100 font-semibold;
+        }
+        button {
+          @apply bg-purple-800 rounded-full p-2 text-base font-medium text-indigo-50;
+        }
+        .favButton {
+          @apply text-white bg-red-500;
+        }
+        .michiBox {
+          @apply p-1 m-2;
+        }
+      }
+      @tailwind components;
+      @tailwind utilities;
     </style>
     <title>Michis app</title>
-</head>
-<body>
-    <h1>Michis app</h1>
+  </head>
+  <header>
+    <nav class="flex items-center justify-between flex-wrap bg-purple-800 p-6">
+      <div class="flex items-center flex-shrink-0 text-white mr-6">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <rect width="256" height="256" fill="none" />
+          <line
+            x1="128"
+            y1="192"
+            x2="128"
+            y2="224"
+            fill="none"
+            stroke="#FFF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="12"
+          />
+          <circle fill="white" cx="84" cy="140" r="10" />
+          <circle fill="white" cx="172" cy="140" r="10" />
+          <line
+            x1="128"
+            y1="48"
+            x2="128"
+            y2="88"
+            fill="none"
+            stroke="#FFF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="12"
+          />
+          <polyline
+            points="144 176 128 192 112 176"
+            fill="none"
+            stroke="#FFF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="12"
+          />
+          <line
+            x1="96"
+            y1="53"
+            x2="96"
+            y2="88"
+            fill="none"
+            stroke="#FFF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="12"
+          />
+          <line
+            x1="160"
+            y1="53"
+            x2="160"
+            y2="88"
+            fill="none"
+            stroke="#FFF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="12"
+          />
+          <path
+            d="M32,136V51.3a8,8,0,0,1,13.7-5.6L67.6,67.6h0A100.8,100.8,0,0,1,128,48a100.8,100.8,0,0,1,60.4,19.6h0l21.9-21.9A8,8,0,0,1,224,51.3V136c0,48.6-43,88-96,88S32,184.6,32,136Z"
+            fill="none"
+            stroke="#FFF"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="12"
+          />
+        </svg>
+        <span class="font-semibold text-xl tracking-tight">Michi App</span>
+      </div>
+      <div class="block lg:hidden">
+        <button
+          class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+        >
+          <svg
+            class="fill-current h-3 w-3"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+          </svg>
+        </button>
+      </div>
+      <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+          <a
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4"
+          >
+            New michis
+          </a>
+          <a
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4"
+          >
+            Upload your michi
+          </a>
+          <a
+            href="#responsive-header"
+            class="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white"
+          >
+            My favorite michis
+          </a>
+        </div>
+        <div>
+          <a
+            href="https://github.com/JessAT18/curso-consumo-api-rest.git"
+            class="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-purple-500 hover:bg-white mt-4 lg:mt-0"
+            >Repo Github @JessAT18</a
+          >
+        </div>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <span id="error"></span>
+    <section id="randomKittens" class="p-4">
+        <h2>New michis</h2>
 
-    <h2>Discover new michis</h2>
-    <section id="randomKittens">
-        
-        <span id="error"></span>
-
-        <div class="flex items-center mb-2 border border-3 border-indigo-600 rounded-md">
+        <div
+        class="flex items-center justify-center mb-2 border border-3 border-indigo-600 rounded-md"
+        >
             <article class="michiBox">
-                <img id="imgKitten1" width="300" height="400" alt="Random kitten picture">
-                <button id="btnFav1" class="favButton">❤️</button>
+                <img
+                id="imgKitten1"
+                width="200"
+                height="300"
+                alt="Random kitten picture"
+                />
+                <button id="btnFav1" class="favButton">❤</button>
             </article>
             <article class="michiBox">
-                <img id="imgKitten2" width="300" height="400" alt="Random kitten picture">
-                <button id="btnFav2" class="favButton">❤️</button>
+                <img
+                id="imgKitten2"
+                width="200"
+                height="300"
+                alt="Random kitten picture"
+                />
+                <button id="btnFav2" class="favButton">❤</button>
             </article>
-    
+
             <article class="michiBox">
-                <img id="imgKitten3" width="300" height="400" alt="Random kitten picture">
-                <button id="btnFav3" class="favButton">❤️</button>
+                <img
+                id="imgKitten3"
+                width="200"
+                height="300"
+                alt="Random kitten picture"
+                />
+                <button id="btnFav3" class="favButton">❤</button>
             </article>
         </div>
 
         <button onclick="loadRandomMichis()">Show me more michis</button>
     </section>
+    
 
-    <section id="uploadingMichi">
-        <h2>Upload your michi photo</h2>
-        <form id="uploadingForm">
-            <input type="file" id="file" name="file">
-            <button type="button" onclick="uploadMichiPhoto()">Upload photo</button>
-        </form>
+    <section id="uploadingMichi" class="p-4">
+      <h2>Upload your michi photo</h2>
+      <form id="uploadingForm">
+        <input type="file" id="file" name="file" class="m-2"/>
+        <img id="preview-image" alt="Waiting michi" class="m-2"/>
+        <button
+          type="button"
+          onclick="uploadMichiPhoto()"
+          class="bg-purple-800 rounded-full p-2 text-base font-medium text-indigo-50"
+        >
+          Upload photo
+        </button>
+      </form>
     </section>
 
-    <section id="favoriteKittens">
-        <h2>My favorite michis</h2>
-        <div id="favoriteKittensContainer" class="flex items-center">
-            <!-- <article>
+    <section id="favoriteKittens" class="p-4">
+      <h2>My favorite michis</h2>
+      <div id="favoriteKittensContainer" class="flex items-center justify-center mb-2 border border-3 border-indigo-600 rounded-md">
+        <!-- <article>
                 <img id="imgKitten4" class="michiBox" width="300" height="400" alt="Random kitten picture">
                 <button>Not ❤️</button>
             </article> -->
-        </div>
+      </div>
     </section>
 
     <script src="./main.js"></script>
-</body>
+  </body>
 </html>

@@ -5,6 +5,7 @@ const API_BASE_URL = 'https://api.thecatapi.com/v1'
 const API_RANDOM = `${API_BASE_URL}/images/search?limit=3`;
 const API_FAV = `${API_BASE_URL}/favourites`;
 const API_NO_FAV = (id) => `${API_BASE_URL}/favourites/${id}`;
+const API_IMG = `${API_BASE_URL}/images/upload`;
 
 const spanError = document.getElementById('error');
 
@@ -56,13 +57,14 @@ async function loadFavoriteMichis() {
             const article = document.createElement('article');
             const img = document.createElement('img');
             const btn = document.createElement('button');
-            const btnText = document.createTextNode('Not ❤️');
+            const btnText = document.createTextNode('♡');
 
+            article.className = 'michiBox';
             btn.appendChild(btnText);
             btn.onclick = () => deleteFavoriteMichi(michi.id);
             img.src = michi.image.url;
-            img.width = 300;
-            img.height = 400;
+            img.width = 200;
+            img.height = 300;
             article.appendChild(img);
             article.appendChild(btn);
             section.appendChild(article);
@@ -112,7 +114,37 @@ async function deleteFavoriteMichi(id) {
 async function uploadMichiPhoto() {
     const form = document.getElementById('uploadingForm');
     const formData = new FormData(form);
+
     console.log(formData.get('file'));
+
+    const response = await fetch(API_IMG, {
+        method: 'POST',
+        headers: {
+            // 'Content-Type': 'multipart/form-data',
+            'x-api-key': API_KEY
+        },
+        body: formData
+    });
+    const data = await response.json();
+
+    if (response.status !== 201) {
+        showError('subir imagen', response.status, data.message);
+        console.log({data});
+    } else {
+        console.log('Tu michi esta en la nube OwO');
+        console.log({data});
+        console.log(data.url);
+        saveFavoriteMichi(data.id);
+    }
+}
+
+const imageUp = document.getElementById('file');
+const michiUp = document.getElementById('preview-image');
+imageUp.onchange = evt => {
+    const [file] = imageUp.files
+    if (file) {
+        michiUp.src = URL.createObjectURL(file);
+    }
 }
 
 loadRandomMichis();
